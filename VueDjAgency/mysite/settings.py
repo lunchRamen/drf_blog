@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['175.192.165.46', '127.0.0.1', 'localhost']
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
     'api.apps.ApiConfig',
+    'api2.apps.Api2Config',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
     'rest_framework',
 ]
 
@@ -139,3 +142,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # AUTH_USER_MODEL =
 
 # LOGGING =
+
+#DRF에서 로그인한 admin유저에겐 모든 권한을 다 준다는 허가코드.
+#로그인하지 않은 유저에겐 read-only
+#해당 코드가 없으면, default인 allow-any가 되어 로그인 없이도
+#모든 권한이 있음.
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

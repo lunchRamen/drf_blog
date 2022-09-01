@@ -27,7 +27,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('blog/', include('blog.urls')),
     path('api/', include('api.urls')),
-    path('api-auth/',include('rest_framework.urls'))
+    path('api2/',include('api2.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
